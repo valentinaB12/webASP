@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Proyecto1.Models.compra>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<h2>Lista de Compras</h2>
+<br />
+<br />
+<br />
+<br />
+<h4>Lista de Compras</h4>
+<p>
+    @Html.ActionLink("Crear Compra", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Fecha
+        </th>
+        <th>
+            Total
+        </th>
+        <th>
+            Usuario
+        </th>
+        <th>
+            Cliente
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+            <td>
+                @Proyecto1.Controllers.CompraController.NombreUsuario(item.id_usuario)
+            </td>
+            <td>
+                @Proyecto1.Controllers.CompraController.NombreCliente(item.id_cliente)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Detalle", "Details", new { id = item.id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

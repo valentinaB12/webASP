@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Proyecto1.Models.producto_compra>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<br />
+<br />
+<br />
+<br />
+<h4>Lista Producto Compra</h4>
+<p>
+    @Html.ActionLink("Crear Producto Compra", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Id Compra
+        </th>
+        <th>
+            Producto
+        </th>
+        <th>
+            Cantidad
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_compra)
+            </td>
+            <td>
+                @Proyecto1.Controllers.Producto_CompraController.NombreProducto(item.id_producto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
